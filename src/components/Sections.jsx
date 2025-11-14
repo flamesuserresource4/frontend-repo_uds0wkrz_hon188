@@ -1,14 +1,97 @@
 import { motion } from 'framer-motion'
 
+const sectionTitle = (text) => (
+  <motion.h2
+    initial={{ opacity: 0, y: 10 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    className="text-3xl sm:text-4xl font-bold text-neutral-900 dark:text-white"
+  >
+    {text}
+  </motion.h2>
+)
+
 export function About() {
   return (
-    <section id="about" className="relative py-20">
+    <section id="about" className="relative py-20 bg-gradient-to-b from-transparent to-white dark:to-neutral-950">
       <div className="mx-auto max-w-7xl px-4">
-        <motion.h2 initial={{opacity:0,y:10}} whileInView={{opacity:1,y:0}} viewport={{once:true}} className="text-3xl sm:text-4xl font-bold text-gray-900">About Me</motion.h2>
-        <motion.p initial={{opacity:0,y:10}} whileInView={{opacity:1,y:0}} viewport={{once:true}} className="mt-6 text-gray-700 leading-relaxed">
-          I am a B.Tech CSE (AI & ML) student from India with a strong entrepreneurial drive. I enjoy turning cutting-edge research into
-          usable products. I’ve led student ventures, shipped web apps, and built ML-powered features across NLP, vision, and recommender systems.
+        {sectionTitle('About')}
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-6 text-neutral-700 dark:text-neutral-300 leading-relaxed max-w-3xl"
+        >
+          I’m a student entrepreneur building companies at the intersection of AI, creativity, and lifestyle. My journey started at age 16, inspired by the launch of ChatGPT. Today, I build startups that combine scalable automation, design, and innovation.
         </motion.p>
+
+        <div className="mt-10 grid md:grid-cols-2 gap-6">
+          <div className="rounded-2xl border bg-white/60 dark:bg-neutral-900/60 border-[#FAD59A]/40 dark:border-neutral-800 p-6 shadow-sm">
+            <p className="text-sm font-semibold text-[#A86523] dark:text-[#FAD59A]">Education</p>
+            <p className="mt-2 text-neutral-800 dark:text-neutral-200">BTech CSE (AIML), SRM University, KTR (2024–2028)</p>
+            <p className="text-neutral-600 dark:text-neutral-400">India</p>
+          </div>
+          <div className="rounded-2xl border bg-white/60 dark:bg-neutral-900/60 border-[#FAD59A]/40 dark:border-neutral-800 p-6 shadow-sm">
+            <p className="text-sm font-semibold text-[#A86523] dark:text-[#FAD59A]">Identity</p>
+            <p className="mt-2 text-neutral-800 dark:text-neutral-200">Student Entrepreneur • Founder • Builder</p>
+            <p className="text-neutral-600 dark:text-neutral-400">Co-Founder at Sarwagyna Pvt Ltd · Founder at CreatorNex · Founder at Wolvra Clothin</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export function Ventures() {
+  const ventures = [
+    {
+      name: 'Sarwagyna Pvt Ltd',
+      desc: 'A multi-domain innovation company building AI agents, automation marketplaces, media, fashion, and global trade solutions.',
+      badge: 'Flagship',
+    },
+    {
+      name: 'AgentZ Store',
+      desc: 'No-code automation + AI agent marketplace for businesses.',
+      badge: 'AI & Automation',
+    },
+    {
+      name: 'CreatorNex',
+      desc: 'Social media + creative agency powered by AI.',
+      badge: 'Media & Creative',
+    },
+    {
+      name: 'Wolvra Clothin',
+      desc: 'Youth-focused fashion brand (ethnic, fusion, streetwear).',
+      badge: 'Fashion',
+    },
+    {
+      name: 'Sarwagyna Exports',
+      desc: 'Import/export solutions connecting India to global markets.',
+      badge: 'Global Trade',
+    },
+  ]
+
+  return (
+    <section id="ventures" className="relative py-20">
+      <div className="mx-auto max-w-7xl px-4">
+        {sectionTitle('Startups & Ventures')}
+        <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {ventures.map((v) => (
+            <motion.div
+              key={v.name}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="group rounded-2xl border border-[#FAD59A]/40 bg-white/70 dark:bg-neutral-900/70 dark:border-neutral-800 p-6 shadow-sm hover:shadow-md transition"
+            >
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="font-semibold text-neutral-900 dark:text-white">{v.name}</h3>
+                <span className="text-xs px-2 py-1 rounded-md bg-[#FCEFCB] text-[#A86523] border border-[#FAD59A]/50 dark:bg-[#A86523]/20 dark:text-[#FAD59A]">{v.badge}</span>
+              </div>
+              <p className="mt-2 text-sm text-neutral-700 dark:text-neutral-300">{v.desc}</p>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   )
@@ -16,16 +99,43 @@ export function About() {
 
 export function Skills() {
   const skills = [
-    'Python', 'TensorFlow', 'PyTorch', 'scikit-learn', 'LangChain', 'OpenCV', 'FastAPI', 'MongoDB', 'React', 'Tailwind CSS', 'Docker', 'Git'
+    'Python', 'PyTorch', 'TensorFlow', 'scikit-learn', 'LangChain', 'OpenCV', 'FastAPI', 'MongoDB', 'React', 'Tailwind CSS', 'Framer Motion', 'Git', 'Product Design', 'Brand Strategy'
   ]
   return (
-    <section id="skills" className="relative py-20 bg-gradient-to-b from-white to-gray-50">
+    <section id="skills" className="relative py-20 bg-gradient-to-b from-white to-[#FCEFCB]/40 dark:from-neutral-950 dark:to-neutral-900">
       <div className="mx-auto max-w-7xl px-4">
-        <motion.h2 initial={{opacity:0,y:10}} whileInView={{opacity:1,y:0}} viewport={{once:true}} className="text-3xl sm:text-4xl font-bold text-gray-900">Skills</motion.h2>
+        {sectionTitle('Skills')}
         <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
           {skills.map((s) => (
-            <motion.div key={s} initial={{opacity:0,y:10}} whileInView={{opacity:1,y:0}} viewport={{once:true}} className="rounded-lg border bg-white px-3 py-2 text-sm text-gray-700 shadow-sm">
+            <motion.div key={s} initial={{opacity:0,y:10}} whileInView={{opacity:1,y:0}} viewport={{once:true}} className="rounded-lg border border-[#FAD59A]/40 bg-white/70 dark:bg-neutral-900/70 dark:border-neutral-800 px-3 py-2 text-sm text-neutral-800 dark:text-neutral-200 shadow-sm">
               {s}
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export function Journey() {
+  const timeline = [
+    { year: '2022', title: 'First steps', text: 'Discovered the power of generative AI and started building small automations.' },
+    { year: '2023', title: 'Launched early ventures', text: 'Set foundations for CreatorNex and Wolvra Clothin while experimenting with AI tooling.' },
+    { year: '2024', title: 'B.Tech begins', text: 'Joined SRM University (AIML). Started Sarwagyna Pvt Ltd and AgentZ Store.' },
+    { year: '2025', title: 'Building in public', text: 'Scaling ventures with a focus on AI agents, media, and youth lifestyle.' },
+  ]
+
+  return (
+    <section id="journey" className="relative py-20">
+      <div className="mx-auto max-w-7xl px-4">
+        {sectionTitle('Student Life + Entrepreneurship Journey')}
+        <div className="mt-10 relative border-l border-[#FAD59A]/50 dark:border-neutral-800 pl-6">
+          {timeline.map((t) => (
+            <motion.div key={t.year} initial={{opacity:0,y:10}} whileInView={{opacity:1,y:0}} viewport={{once:true}} className="relative py-5">
+              <span className="absolute -left-[9px] top-7 h-4 w-4 rounded-full bg-gradient-to-r from-[#A86523] to-[#E9A319] border border-white dark:border-neutral-900" />
+              <p className="text-xs uppercase tracking-wider text-[#A86523] dark:text-[#FAD59A] font-semibold">{t.year}</p>
+              <p className="mt-1 font-semibold text-neutral-900 dark:text-white">{t.title}</p>
+              <p className="text-sm text-neutral-700 dark:text-neutral-300">{t.text}</p>
             </motion.div>
           ))}
         </div>
@@ -59,16 +169,16 @@ export function Projects() {
   return (
     <section id="projects" className="relative py-20">
       <div className="mx-auto max-w-7xl px-4">
-        <motion.h2 initial={{opacity:0,y:10}} whileInView={{opacity:1,y:0}} viewport={{once:true}} className="text-3xl sm:text-4xl font-bold text-gray-900">Projects</motion.h2>
+        {sectionTitle('Projects')}
         <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((p) => (
-            <motion.a key={p.title} href={p.link} target="_blank" rel="noreferrer" initial={{opacity:0,y:10}} whileInView={{opacity:1,y:0}} viewport={{once:true}} className="group block rounded-2xl border bg-white p-5 shadow-sm hover:shadow-md transition">
-              <div className="aspect-video rounded-xl bg-gradient-to-tr from-indigo-200 via-purple-200 to-pink-200 mb-4" />
-              <h3 className="font-semibold text-gray-900">{p.title}</h3>
-              <p className="mt-2 text-sm text-gray-700">{p.desc}</p>
+            <motion.a key={p.title} href={p.link} target="_blank" rel="noreferrer" initial={{opacity:0,y:10}} whileInView={{opacity:1,y:0}} viewport={{once:true}} className="group block rounded-2xl border border-[#FAD59A]/40 bg-white/70 dark:bg-neutral-900/70 dark:border-neutral-800 p-5 shadow-sm hover:shadow-md transition">
+              <div className="aspect-video rounded-xl bg-gradient-to-tr from-[#FAD59A] via-[#E9A319] to-[#A86523] opacity-80 group-hover:opacity-100 transition mb-4" />
+              <h3 className="font-semibold text-neutral-900 dark:text-white">{p.title}</h3>
+              <p className="mt-2 text-sm text-neutral-700 dark:text-neutral-300">{p.desc}</p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {p.tags.map(t => (
-                  <span key={t} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-md">{t}</span>
+                  <span key={t} className="text-xs bg-[#FCEFCB] text-[#A86523] px-2 py-1 rounded-md border border-[#FAD59A]/50 dark:bg-[#A86523]/20 dark:text-[#FAD59A]">{t}</span>
                 ))}
               </div>
             </motion.a>
@@ -86,14 +196,14 @@ export function Achievements() {
     { title: 'Research Paper (AI/ML)', desc: 'Co-authored on model compression and deployment.' },
   ]
   return (
-    <section id="achievements" className="relative py-20 bg-gradient-to-b from-gray-50 to-white">
+    <section id="achievements" className="relative py-20 bg-gradient-to-b from-[#FCEFCB]/30 to-white dark:from-neutral-900 dark:to-neutral-950">
       <div className="mx-auto max-w-7xl px-4">
-        <motion.h2 initial={{opacity:0,y:10}} whileInView={{opacity:1,y:0}} viewport={{once:true}} className="text-3xl sm:text-4xl font-bold text-gray-900">Achievements</motion.h2>
+        {sectionTitle('Achievements')}
         <div className="mt-8 grid gap-4 md:grid-cols-2">
           {items.map(i => (
-            <motion.div key={i.title} initial={{opacity:0,y:10}} whileInView={{opacity:1,y:0}} viewport={{once:true}} className="rounded-xl border bg-white p-5 shadow-sm">
-              <p className="font-semibold text-gray-900">{i.title}</p>
-              <p className="mt-1 text-gray-700">{i.desc}</p>
+            <motion.div key={i.title} initial={{opacity:0,y:10}} whileInView={{opacity:1,y:0}} viewport={{once:true}} className="rounded-xl border border-[#FAD59A]/40 bg-white/70 dark:bg-neutral-900/70 dark:border-neutral-800 p-5 shadow-sm">
+              <p className="font-semibold text-neutral-900 dark:text-white">{i.title}</p>
+              <p className="mt-1 text-neutral-700 dark:text-neutral-300">{i.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -106,14 +216,14 @@ export function Contact() {
   return (
     <section id="contact" className="relative py-20">
       <div className="mx-auto max-w-7xl px-4">
-        <motion.h2 initial={{opacity:0,y:10}} whileInView={{opacity:1,y:0}} viewport={{once:true}} className="text-3xl sm:text-4xl font-bold text-gray-900">Contact</motion.h2>
-        <p className="mt-6 text-gray-700">Open to collaborations, internships, and startup conversations. Reach out and let’s build something impactful.</p>
+        {sectionTitle('Contact')}
+        <p className="mt-6 text-neutral-700 dark:text-neutral-300 max-w-2xl">Open to collaborations, internships, and startup conversations. Reach out and let’s build something impactful.</p>
 
         <form className="mt-8 grid gap-4 max-w-xl">
-          <input className="w-full rounded-md border px-4 py-3" placeholder="Your Name" />
-          <input className="w-full rounded-md border px-4 py-3" placeholder="Email" type="email" />
-          <textarea className="w-full rounded-md border px-4 py-3" placeholder="Message" rows={5} />
-          <button type="button" className="rounded-md bg-gray-900 text-white px-5 py-3 text-sm font-medium hover:bg-gray-800 transition">Send Message</button>
+          <input className="w-full rounded-md border border-[#FAD59A]/40 bg-white/70 dark:bg-neutral-900/70 dark:border-neutral-800 px-4 py-3 text-neutral-800 dark:text-neutral-100 placeholder-neutral-500" placeholder="Your Name" />
+          <input className="w-full rounded-md border border-[#FAD59A]/40 bg-white/70 dark:bg-neutral-900/70 dark:border-neutral-800 px-4 py-3 text-neutral-800 dark:text-neutral-100 placeholder-neutral-500" placeholder="Email" type="email" />
+          <textarea className="w-full rounded-md border border-[#FAD59A]/40 bg-white/70 dark:bg-neutral-900/70 dark:border-neutral-800 px-4 py-3 text-neutral-800 dark:text-neutral-100 placeholder-neutral-500" placeholder="Message" rows={5} />
+          <button type="button" className="rounded-md bg-gradient-to-r from-[#A86523] to-[#E9A319] text-white px-5 py-3 text-sm font-medium shadow hover:opacity-90 transition">Send Message</button>
         </form>
       </div>
     </section>
