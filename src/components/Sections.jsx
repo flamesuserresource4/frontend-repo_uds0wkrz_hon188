@@ -145,43 +145,82 @@ export function Journey() {
 }
 
 export function Projects() {
-  const projects = [
+  const sections = [
     {
-      title: 'AI Resume Screener',
-      desc: 'Ranks resumes using transformer embeddings and domain heuristics. Dashboard with shortlisting and feedback loops.',
-      tags: ['NLP', 'FastAPI', 'React'],
-      link: '#'
+      heading: 'Hardware & IoT',
+      items: [
+        {
+          title: 'Lost & Found Management & Notification System (Arduino + GSM)',
+          desc: 'Identifies lost objects and sends instant notifications using GSM technology for campus use.',
+          tags: ['Arduino', 'SIM900A GSM', 'C/C++'],
+        },
+        {
+          title: 'RFID Attendance System (ESP12E + Google Sheets Automation)',
+          desc: 'Cloud-connected attendance with RFID auth and real-time logging to Google Sheets.',
+          tags: ['ESP-12E', 'MFRC522', 'Apps Script', 'WiFi IoT', 'C/C++'],
+        },
+        {
+          title: 'Arduino Object Detection System (Ultrasonic Sensor)',
+          desc: 'Distance sensing with HC-SR04 for safety zones and automation.',
+          tags: ['Arduino', 'HC-SR04', 'Embedded C'],
+        },
+        {
+          title: 'Smart Dustbin (Arduino + GSM Notification)',
+          desc: 'Ultrasonic fill-level detection with GSM SMS alerts when bin is full.',
+          tags: ['Arduino', 'GSM Module', 'Ultrasonic'],
+        },
+        {
+          title: 'Smart Blind Stick (Arduino Assistive Device)',
+          desc: 'Ultrasonic object detection with vibration alerts for visually impaired users.',
+          tags: ['Arduino', 'Ultrasonic', 'Buzzer/Vibrator'],
+        },
+      ],
     },
     {
-      title: 'Vision-based Quality Control',
-      desc: 'Deployed a lightweight CNN on edge device for visual anomaly detection in manufacturing.',
-      tags: ['Computer Vision', 'Edge', 'OpenCV'],
-      link: '#'
+      heading: 'Full-Stack & Websites',
+      items: [
+        { title: 'Sarwagyna Pvt Ltd – Corporate Website', desc: 'Official multi-division website covering AI, media, fashion, and export.', tags: ['HTML', 'CSS', 'JavaScript', 'React (optional)', 'UI/UX'] },
+        { title: 'CreatorNex LLC – Social Media Agency Website', desc: 'Clean, professional site for services, portfolio, and brand identity.', tags: ['HTML', 'CSS', 'Creative Design'] },
+        { title: 'Wolvra Clothin – Fashion Brand Website', desc: 'Online presence for youth-focused fashion brand.', tags: ['HTML', 'CSS', 'Tailwind', 'Branding'] },
+        { title: 'AgentZ Store – AI Agent Marketplace Website', desc: 'Early-stage UI + landing for no-code automation marketplace.', tags: ['HTML', 'CSS', 'Tailwind', 'Product UI/UX'] },
+        { title: 'Personal Portfolio Website', desc: 'Founder-style theme with premium gold palette.', tags: ['HTML', 'CSS', 'Tailwind'] },
+      ],
     },
     {
-      title: 'Chat-based Learning Assistant',
-      desc: 'RAG pipeline with vector search for course material Q&A. Tuned prompts and evaluators.',
-      tags: ['RAG', 'LangChain', 'MongoDB'],
-      link: '#'
-    }
+      heading: 'Software & AI Projects',
+      items: [
+        { title: 'AI Resume Builder for IEEE Scholars', desc: 'Generative AI-powered resume builder with role-specific tailoring and PDF export.', tags: ['Python', 'GenAI', 'Automation', 'HTML/CSS'] },
+        { title: 'MED Connect – Online Medicine Donation & Redistribution (Java)', desc: 'Platform connecting donors with NGOs to reduce medicine waste.', tags: ['Java', 'JDBC/MySQL', 'HTML/CSS', 'JSP/Servlets'] },
+      ],
+    },
   ]
 
   return (
     <section id="projects" className="relative py-20">
       <div className="mx-auto max-w-7xl px-4">
         {sectionTitle('Projects')}
-        <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((p) => (
-            <motion.a key={p.title} href={p.link} target="_blank" rel="noreferrer" initial={{opacity:0,y:10}} whileInView={{opacity:1,y:0}} viewport={{once:true}} className="group block rounded-2xl border border-[#FAD59A]/40 bg-white/70 dark:bg-neutral-900/70 dark:border-neutral-800 p-5 shadow-sm hover:shadow-md transition">
-              <div className="aspect-video rounded-xl bg-gradient-to-tr from-[#FAD59A] via-[#E9A319] to-[#A86523] opacity-80 group-hover:opacity-100 transition mb-4" />
-              <h3 className="font-semibold text-neutral-900 dark:text-white">{p.title}</h3>
-              <p className="mt-2 text-sm text-neutral-700 dark:text-neutral-300">{p.desc}</p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {p.tags.map(t => (
-                  <span key={t} className="text-xs bg-[#FCEFCB] text-[#A86523] px-2 py-1 rounded-md border border-[#FAD59A]/50 dark:bg-[#A86523]/20 dark:text-[#FAD59A]">{t}</span>
+
+        <div className="mt-10 space-y-12">
+          {sections.map((sec) => (
+            <div key={sec.heading}>
+              <h3 className="text-xl sm:text-2xl font-semibold text-[#A86523] dark:text-[#FAD59A]">{sec.heading}</h3>
+              <div className="mt-6 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {sec.items.map((p) => (
+                  <motion.div key={p.title} initial={{opacity:0,y:10}} whileInView={{opacity:1,y:0}} viewport={{once:true}} className="group rounded-2xl border border-[#FAD59A]/40 bg-white/70 dark:bg-neutral-900/70 dark:border-neutral-800 p-5 shadow-sm hover:shadow-md transition">
+                    <div className="aspect-video rounded-xl bg-gradient-to-tr from-[#FAD59A] via-[#E9A319] to-[#A86523] opacity-80 group-hover:opacity-100 transition mb-4" />
+                    <h4 className="font-semibold text-neutral-900 dark:text-white">{p.title}</h4>
+                    <p className="mt-2 text-sm text-neutral-700 dark:text-neutral-300">{p.desc}</p>
+                    {p.tags?.length ? (
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {p.tags.map((t) => (
+                          <span key={t} className="text-xs bg-[#FCEFCB] text-[#A86523] px-2 py-1 rounded-md border border-[#FAD59A]/50 dark:bg-[#A86523]/20 dark:text-[#FAD59A]">{t}</span>
+                        ))}
+                      </div>
+                    ) : null}
+                  </motion.div>
                 ))}
               </div>
-            </motion.a>
+            </div>
           ))}
         </div>
       </div>
@@ -206,6 +245,22 @@ export function Achievements() {
               <p className="mt-1 text-neutral-700 dark:text-neutral-300">{i.desc}</p>
             </motion.div>
           ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export function Interests() {
+  return (
+    <section id="interests" className="relative py-20">
+      <div className="mx-auto max-w-7xl px-4">
+        {sectionTitle('Other Skills & Interests')}
+        <div className="mt-8 grid gap-6 md:grid-cols-2">
+          <motion.div initial={{opacity:0,y:10}} whileInView={{opacity:1,y:0}} viewport={{once:true}} className="rounded-2xl border border-[#FAD59A]/40 bg-white/70 dark:bg-neutral-900/70 dark:border-neutral-800 p-6 shadow-sm">
+            <p className="text-sm font-semibold text-[#A86523] dark:text-[#FAD59A]">Trading & Financial Markets</p>
+            <p className="mt-2 text-neutral-800 dark:text-neutral-200">Actively invested in stocks and mutual funds; focus on market analysis, long-term and swing strategies. Highlights analytical mindset and risk management.</p>
+          </motion.div>
         </div>
       </div>
     </section>

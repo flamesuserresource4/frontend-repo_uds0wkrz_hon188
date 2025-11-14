@@ -1,6 +1,6 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import { About, Ventures, Skills, Journey, Projects, Achievements, Contact } from './components/Sections'
+import { About, Ventures, Skills, Journey, Projects, Achievements, Interests, Contact } from './components/Sections'
 
 function App() {
   return (
@@ -14,6 +14,7 @@ function App() {
         <Journey />
         <Projects />
         <Achievements />
+        <Interests />
         <Contact />
       </main>
       <footer className="border-t bg-white/60 dark:bg-neutral-900/60 backdrop-blur border-white/40 dark:border-white/10">
